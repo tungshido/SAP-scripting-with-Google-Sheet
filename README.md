@@ -10,8 +10,8 @@ What things you need to install the software and how to install them
 ```
 Python 3.5 and above (32-bit)
 SAPGUI scripting
-[Python](https://www.python.org/downloads/windows/)
 ```
+[Python](https://www.python.org/downloads/windows/)
 
 # Usage
 Setup virtual enviroment for the project with necessary packages:
