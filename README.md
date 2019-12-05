@@ -14,6 +14,7 @@ SAPGUI scripting
 [Python](https://www.python.org/downloads/windows/)
 
 #Usage
+
 Setup virtual enviroment for the project with necessary packages:
 ```
 Pywin32
@@ -25,3 +26,5 @@ Clone the project using command line tool
 
 git clone https://github.com/myphuoc-digital-team/sap-scripting-python-project
 ```
+#License
+Python pioneer team - Colgate-Palmolive My Phuoc branch 
