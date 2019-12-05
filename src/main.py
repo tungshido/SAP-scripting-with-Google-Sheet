@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QMainWindow, QWidget, QApplication, QMessageBox, QDialog
 from src.layout.login_window import Ui_MainWindow as login_Window
-from src.layout.scripting_dialog import Ui_Dialog as scripting_Oe_Gui
+from src.layout.scripting_dialog_oe import Ui_Dialog as scripting_Oe_Gui
 from src.layout.scripting_dialog_planning import Ui_Dialog as scripting_Planning_Gui
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import pyqtSlot
