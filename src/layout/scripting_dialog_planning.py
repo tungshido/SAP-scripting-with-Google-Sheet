@@ -46,14 +46,3 @@ class Ui_Dialog(object):
     Dialog.setWindowTitle(_translate("Dialog", "SAP scripting"))
     self.btn_RRP.setText(_translate("Dialog", "Create RRP4"))
     self.btn_Adjust.setText(_translate("Dialog", "Adjust Loading Date"))
-
-
-if __name__ == "__main__":
-  import sys
-
-  app = QtWidgets.QApplication(sys.argv)
-  Dialog = QtWidgets.QDialog()
-  ui = Ui_Dialog()
-  ui.setupUi(Dialog)
-  Dialog.show()
-  sys.exit(app.exec_())

@@ -1,10 +1,12 @@
 import sys
 from PyQt5.QtWidgets import QMainWindow, QWidget, QApplication, QMessageBox, QDialog
-from src.layout.login_window1 import Ui_MainWindow as login_Window
-from src.layout.scripting_dialog import Ui_Dialog as scripting_Oe
-from src.layout.scripting_dialog_planning import Ui_Dialog as scripting_Planning
+from src.layout.login_window import Ui_MainWindow as login_Window
+from src.layout.scripting_dialog import Ui_Dialog as scripting_Oe_Gui
+from src.layout.scripting_dialog_planning import Ui_Dialog as scripting_Planning_Gui
 from PyQt5 import QtCore, QtGui
-from src.createSapConnection import SAP
+from PyQt5.QtCore import pyqtSlot
+from src.createSapConnection import OEScript, PlanningScript
+
 
 class Login(QMainWindow, login_Window):
 	switch_window = QtCore.pyqtSignal()
@@ -62,7 +64,7 @@ class Login(QMainWindow, login_Window):
 			QMessageBox.warning(self, 'Error', 'Sai tên đăng nhập hoặc mật khẩu!!!')
 
 
-class ScriptingPlanning(QDialog, scripting_Planning, SAP):
+class ScriptingPlanning(QDialog, scripting_Planning_Gui, PlanningScript):
 	switch_window = QtCore.pyqtSignal()
 
 	def __init__(self):
@@ -76,18 +78,35 @@ class ScriptingPlanning(QDialog, scripting_Planning, SAP):
 		self.testSapScripting()
 
 
-class ScriptingOe(QDialog, scripting_Oe, SAP):
+class ScriptingOe(QDialog, scripting_Oe_Gui, OEScript):
 	switch_window = QtCore.pyqtSignal()
 
 	def __init__(self):
 		QWidget.__init__(self)
 		self.setupUi(self)
-		self.btn_PID.clicked.connect(self.pushbutton_handler_oe)
+		self.btn_PID.clicked.connect(self.showConfirmation)
+
+	@pyqtSlot()
+	def showConfirmation(self):
+		msgBox = QMessageBox()
+		msgBox.setIcon(QMessageBox.Warning)
+		a = 1
+		msgBox.setText(f"Bạn có chắc muốn thực hiện ")
+		msgBox.setWindowTitle("QMessageBox Example")
+		msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+
+		returnValue = msgBox.exec()
+		if returnValue == QMessageBox.Ok:
+			self.pushbutton_handler_oe()
+		else:
+			msgBox.hide()
 
 	def pushbutton_handler_oe(self):
-		self.hide()
-		self.show()
-		self.testSapScripting()
+		print("test")
+		# self.hide()
+		# self.show()
+		# self.testSapScripting()
+		return self
 
 
 class Controller:

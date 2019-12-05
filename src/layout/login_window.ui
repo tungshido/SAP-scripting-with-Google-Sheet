@@ -324,7 +324,7 @@
        </layout>
       </item>
       <item row="2" column="0" alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="btn_credit">
         <property name="maximumSize">
          <size>
           <width>100</width>
