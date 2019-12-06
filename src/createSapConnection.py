@@ -1,6 +1,8 @@
 from win32com.client import GetObject, CDispatch
 import pandas as pd
 import numpy as np
+from abc import ABC, abstractmethod
+from PyQt5.QtWidgets import QMessageBox
 
 
 class SAP:
@@ -56,6 +58,19 @@ class OEScript(SAP):
 		session.findById("wnd[1]/usr/ctxtDY_FILENAME").text = "test1.XLSX"
 		session.findById("wnd[1]/usr/ctxtDY_FILENAME").caretPosition = 9
 		session.findById("wnd[1]/tbar[0]/btn[0]").press()
+
+	def showMsgBox(self):
+		msgBox = QMessageBox()
+		msgBox.setIcon(QMessageBox.Warning)
+		msgBox.setText(f"Bạn có chắc muốn thực hiện ")
+		msgBox.setWindowTitle(f"Xác nhận thực hiện")
+		msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+
+		returnValue = msgBox.exec()
+		if returnValue == QMessageBox.Ok:
+			self.testSapScripting()
+		else:
+			msgBox.hide()
 
 
 class PlanningScript(SAP):

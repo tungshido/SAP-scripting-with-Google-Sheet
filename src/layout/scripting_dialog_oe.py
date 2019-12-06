@@ -11,9 +11,6 @@ from PyQt5 import QtCore, QtWidgets
 
 
 class Ui_Dialog(object):
-	def __init__(self):
-		super(Ui_Dialog, self).__init__()
-
 	def setupUi(self, Dialog):
 		Dialog.setObjectName("Dialog")
 		Dialog.setEnabled(True)
