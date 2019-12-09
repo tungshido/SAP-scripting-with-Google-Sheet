@@ -16,6 +16,7 @@ class Login(QMainWindow, login_Window):
 		QMainWindow.__init__(self)
 		self.setupUi(self)
 		self.btn_login.clicked.connect(self.handlelogin)
+		self.btn_credit.clicked.connect(self.showCredit)
 		self.oeUser = {
 			"OE_1": "OE@1234",
 			"OE_2": "OE@1234",
@@ -47,6 +48,18 @@ class Login(QMainWindow, login_Window):
 			"EQ_05": "EQ@12345",
 		}
 
+	def showCredit(self):
+		creditBox = QMessageBox()
+		creditBox.setIcon(QMessageBox.Information)
+		creditBox.setWindowTitle("Credit")
+		creditBox.setText(
+			"<p align='center'><b>This tool is created by Python Pioneers team - My Phuoc plant</b><br><br>""Tung Hoang - "
+			"Digital Engineer - tung_hoang@colpal.com<br>Xuan Thanh Nguyen - OE engineer - "
+			"xuan_thanh_nguyen@colpal.com<br>Phat Nguyen Huu - Planning Officer - phat_nguyen_huu@colpal.com</p>")
+
+		creditBox.exec()
+		return self
+
 	def switchDepartment(self, argument):
 		switcher = {
 			"OE": self.oeUser,
@@ -71,7 +84,7 @@ class MessageBoxConfirmation:
 		self.scriptingMethod = script_method
 		self.scriptingName = script_name
 
-	def showConfirmation(self):
+	def showConfirmationAndExecuteScript(self):
 		msgBox = QMessageBox()
 		msgBox.setIcon(QMessageBox.Warning)
 		msgBox.setText(f"Bạn có chắc muốn thực hiện script {self.scriptingName}, Hãy đảm bảo SAP đã được bật")
@@ -97,7 +110,7 @@ class ScriptingPlanning(QDialog, scripting_Planning_Gui, PlanningScript, Message
 	@pyqtSlot()
 	def pushbutton_handler_planning(self, sap_script_method, sap_script_name):
 		msgBox = MessageBoxConfirmation(script_method=sap_script_method, script_name=sap_script_name)
-		msgBox.showConfirmation()
+		msgBox.showConfirmationAndExecuteScript()
 		self.hide()
 		self.show()
 		return self
@@ -115,7 +128,7 @@ class ScriptingOe(QDialog, scripting_Oe_Gui, OEScript, MessageBoxConfirmation):
 	@pyqtSlot()
 	def pushbutton_handler_oe(self, sap_script_method, sap_script_name):
 		msgBox = MessageBoxConfirmation(script_method=sap_script_method, script_name=sap_script_name)
-		msgBox.showConfirmation()
+		msgBox.showConfirmationAndExecuteScript()
 		self.hide()
 		self.show()
 		return self

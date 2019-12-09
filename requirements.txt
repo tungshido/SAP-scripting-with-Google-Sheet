@@ -1,0 +1,5 @@
+PyQt5==5.13.0
+pywin32==227
+pandas==0.25.3
+numpy==1.17.4
+PyQt5-stubs==5.13.0.1
